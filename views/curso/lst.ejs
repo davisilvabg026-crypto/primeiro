@@ -1,0 +1,35 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Clientes</h1>
+
+<div class="search">
+    <form action="/curso/lst" method="post">
+        <input type="text" name="filtro" placeholder="digite nome ou telefone">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+
+<a href="/curso/add" class="btn add">+ Cliente</a>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+    </tr>
+
+    <% for (const {id, nome, telefone, email} of Cursos) { %>
+    <tr>
+        <td><%=nome%></td>
+        <td><%=telefone%></td>
+        <td><%=email || ''%></td>
+        <td>
+            <a href="/curso/edt/<%=id%>" class="btn edit">Editar</a>
+            <a href="/curso/del/<%=id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<%-include('../rodape.ejs')%>

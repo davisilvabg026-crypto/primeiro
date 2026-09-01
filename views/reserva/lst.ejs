@@ -1,0 +1,78 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Reservas</h1>
+
+<div class="search">
+    <form action="/reserva/lst" method="post">
+
+        <input
+            type="text"
+            name="filtro"
+            placeholder="digite o nome do cliente">
+
+        <button type="submit" class="btn">
+            Pesquisar
+        </button>
+
+    </form>
+</div>
+
+<br>
+
+<a href="/reserva/add" class="btn add">+ Reserva</a>
+
+<table>
+
+    <tr>
+        <th>Cliente</th>
+        <th>Telefone</th>
+        <th>Mesa</th>
+        <th>Capacidade</th>
+        <th>Status</th>
+        <th>Data e hora</th>
+        <th>Ações</th>
+    </tr>
+
+    <% for (const reserva of Reservas) { %>
+
+    <tr>
+
+        <td>
+            <%= reserva.cliente ? reserva.cliente.nome : 'Cliente não encontrado' %>
+        </td>
+
+        <td>
+            <%= reserva.cliente ? reserva.cliente.telefone : '-' %>
+        </td>
+
+        <td>
+            <%= reserva.mesa ? 'Mesa' : 'Mesa não encontrada' %>
+        </td>
+
+        <td>
+            <%= reserva.mesa ? reserva.mesa.capacidade : '-' %>
+        </td>
+
+        <td>
+            <%= reserva.mesa ? reserva.mesa.status : '-' %>
+        </td>
+
+        <td>
+            <%= new Date(reserva.dataHora).toLocaleString('pt-BR') %>
+        </td>
+
+        <td>
+            <a
+                href="/reserva/del/<%=reserva._id%>"
+                class="btn delete">
+                Excluir
+            </a>
+        </td>
+
+    </tr>
+
+    <% } %>
+
+</table>
+
+<%-include('../rodape.ejs')%>

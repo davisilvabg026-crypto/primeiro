@@ -1,0 +1,42 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Editar Cliente</h1>
+
+<div>
+    <a href="/curso/lst" class="btn">Listar</a>
+</div>
+
+<div>
+    <form method="post">
+
+        <label>Nome:</label>
+        <input
+            type="text"
+            name="nome"
+            value="<%=Cliente.nome%>"
+            required>
+        <br>
+
+        <label>Telefone:</label>
+        <input
+            type="text"
+            name="telefone"
+            value="<%=Cliente.telefone%>"
+            required>
+        <br>
+
+        <label>E-mail:</label>
+        <input
+            type="text"
+            name="email"
+            value="<%=Cliente.email || ''%>">
+        <br>
+
+        <button type="submit" class="btn edit">
+            Salvar
+        </button>
+
+    </form>
+</div>
+
+<%-include('../rodape.ejs')%>

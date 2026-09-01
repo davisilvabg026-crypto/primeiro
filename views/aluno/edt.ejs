@@ -1,0 +1,25 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Editar Mesa</h1>
+
+<div>
+    <a href="/aluno/lst">Listar</a>
+</div>
+
+<div>
+    <form method="post">
+
+        <label>Capacidade:</label>
+        <input type="number" name="capacidade"
+        value="<%=Aluno.capacidade%>"><br>
+
+        <label>Status:</label>
+        <input type="text" name="status"
+        value="<%=Aluno.status%>"><br>
+
+        <button type="submit">Salvar</button>
+
+    </form>
+</div>
+
+<%-include('../rodape.ejs')%>

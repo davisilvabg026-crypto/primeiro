@@ -1,0 +1,44 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Pratos</h1>
+
+<div class="search">
+    <form action="/prato/lst" method="post">
+        <input type="text" name="filtro" placeholder="digite o nome do prato">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+
+<a href="/prato/add" class="btn add">+ Prato</a>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Disponível</th>
+        <th>Ações</th>
+    </tr>
+
+    <% for (const {id, nome, categoria, disponivel} of Pratos) { %>
+    <tr>
+        <td><%=nome%></td>
+        <td><%=categoria%></td>
+
+        <td>
+            <% if (disponivel) { %>
+                Sim
+            <% } else { %>
+                Não
+            <% } %>
+        </td>
+
+        <td>
+            <a href="/prato/edt/<%=id%>" class="btn edit">Editar</a>
+            <a href="/prato/del/<%=id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+
+</table>
+
+<%-include('../rodape.ejs')%>

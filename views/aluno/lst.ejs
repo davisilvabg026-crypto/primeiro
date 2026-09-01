@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Mesa</h1>
+
+<div class="search">
+    <form action="/aluno/lst" method="post">
+        <input type="text" name="filtro" placeholder="digite status ou capacidade">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+
+<a href="/aluno/add" class="btn add">+mesa </a>
+
+<table>
+    <tr>
+        <th>Capacidade</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+
+    <% for (const {id, capacidade, status} of Alunos) { %>
+    <tr>
+        <td><%=capacidade%></td>
+        <td><%=status%></td>
+        <td>
+            <a href="/aluno/edt/<%=id%>" class="btn edit">Editar</a>
+            <a href="/aluno/del/<%=id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<%-include('../rodape.ejs')%>

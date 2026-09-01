@@ -1,0 +1,48 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Adicionar Reserva</h1>
+
+<div>
+    <a href="/reserva/lst" class="btn">Listar</a>
+</div>
+
+<div>
+    <form method="post">
+
+        <label>Cliente:</label>
+        <select name="cliente" required>
+            <option value="">Selecione o cliente</option>
+
+            <% for (const cliente of Clientes) { %>
+                <option value="<%=cliente._id%>">
+                    <%=cliente.nome%> - <%=cliente.telefone%>
+                </option>
+            <% } %>
+
+        </select>
+        <br>
+
+        <label>Mesa:</label>
+        <select name="mesa" required>
+            <option value="">Selecione a mesa</option>
+
+            <% for (const mesa of Mesas) { %>
+                <option value="<%=mesa._id%>">
+                    Mesa - Capacidade: <%=mesa.capacidade%> -
+                    Status: <%=mesa.status%>
+                </option>
+            <% } %>
+
+        </select>
+        <br>
+
+        <label>Data e hora:</label>
+        <input type="datetime-local" name="dataHora" required>
+        <br>
+
+        <button type="submit" class="btn add">Cadastrar</button>
+
+    </form>
+</div>
+
+<%-include('../rodape.ejs')%>
