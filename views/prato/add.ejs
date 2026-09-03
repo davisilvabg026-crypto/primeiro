@@ -1,35 +1,65 @@
 <%-include('../cabecalho.ejs')%>
 
-<h1>Adicionar Prato</h1>
+    <h1>Adicionar Prato</h1>
 
-<div>
-    <a href="/prato/lst" class="btn">Listar</a>
-</div>
+    <div>
+        <a href="/prato/lst" class="btn">Listar</a>
+    </div>
 
-<div>
-    <form method="post">
+    <div>
 
-        <label>Nome do prato:</label>
-        <input type="text" name="nome" required><br>
+        <form method="post">
 
-        <label>Categoria:</label>
-        <select name="categoria" required>
-            <option value="">Selecione uma categoria</option>
-            <option value="entrada">Entrada</option>
-            <option value="prato principal">Prato principal</option>
-            <option value="sobremesa">Sobremesa</option>
-            <option value="bebida">Bebida</option>
-        </select><br>
+            <label>Nome do prato:</label>
 
-        <label>Disponível:</label>
-        <select name="disponivel" required>
-            <option value="true">Sim</option>
-            <option value="false">Não</option>
-        </select><br>
+            <select name="nome" required>
 
-        <button type="submit" class="btn add">Cadastrar</button>
+                <option value="">Selecione um prato</option>
 
-    </form>
-</div>
+                <option value="Charrua">Charrua</option>
 
-<%-include('../rodape.ejs')%>
+                <option value="Galeto">Galeto</option>
+
+                <option value="Pizza">Pizza</option>
+
+                <option value="Pudim">Pudim</option>
+
+                <option value="Strogonoff">Strogonoff</option>
+
+                <option value="Torta bolachinha">Torta bolachinha</option>
+
+            </select><br>
+
+            <label>Categoria:</label>
+
+            <select name="categoria" required>
+
+                <option value="">Selecione uma categoria</option>
+
+                <option value="entrada">Entrada</option>
+
+                <option value="prato principal">Prato principal</option>
+
+                <option value="sobremesa">Sobremesa</option>
+
+                <option value="bebida">Bebida</option>
+
+            </select><br>
+
+            <label>Disponível:</label>
+
+            <select name="disponivel" required>
+
+                <option value="true">Sim</option>
+
+                <option value="false">Não</option>
+
+            </select><br>
+
+            <button type="submit" class="btn add">Cadastrar</button>
+
+        </form>
+
+    </div>
+
+    <%-include('../rodape.ejs')%>

@@ -1,44 +1,83 @@
 <%-include('../cabecalho.ejs')%>
 
-<h1>Pratos</h1>
+    <h1>Pratos</h1>
 
-<div class="search">
-    <form action="/prato/lst" method="post">
-        <input type="text" name="filtro" placeholder="digite o nome do prato">
-        <button type="submit" class="btn">Pesquisar</button>
-    </form>
-</div>
+    <div class="search">
 
-<a href="/prato/add" class="btn add">+ Prato</a>
+        <form action="/prato/lst" method="post">
 
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Categoria</th>
-        <th>Disponível</th>
-        <th>Ações</th>
-    </tr>
+            <input type="text" name="filtro" placeholder="digite o nome do prato">
 
-    <% for (const {id, nome, categoria, disponivel} of Pratos) { %>
-    <tr>
-        <td><%=nome%></td>
-        <td><%=categoria%></td>
+            <button type="submit" class="btn">Pesquisar</button>
 
-        <td>
-            <% if (disponivel) { %>
-                Sim
-            <% } else { %>
-                Não
+        </form>
+
+    </div>
+
+    <a href="/prato/add" class="btn add">+ Prato</a>
+
+    <table>
+
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+        </tr>
+
+        <% for (const {id, nome, categoria, disponivel} of Pratos) { %>
+
+            <tr>
+
+                <td>
+
+                    <% if (nome==='Charrua' ) { %>
+                        <img src="/charrua.png" width="100">
+                        <% } else if (nome==='Galeto' ) { %>
+                            <img src="/galeto.png" width="100">
+                            <% } else if (nome==='Pizza' ) { %>
+                                <img src="/pizza.png" width="100">
+                                <% } else if (nome==='Pudim' ) { %>
+                                    <img src="/pudim.png" width="100">
+                                    <% } else if (nome==='Strogonoff' ) { %>
+                                        <img src="/strogonoff.png" width="100">
+                                        <% } else if (nome==='Torta bolachinha' ) { %>
+                                            <img src="/tortabolachinha.png" width="100">
+                                            <% } %>
+
+                </td>
+
+                <td>
+                    <%=nome%>
+                </td>
+
+                <td>
+                    <%=categoria%>
+                </td>
+
+                <td>
+
+                    <% if (disponivel) { %>
+                        Sim
+                        <% } else { %>
+                            Não
+                            <% } %>
+
+                </td>
+
+                <td>
+
+                    <a href="/prato/edt/<%=id%>" class="btn edit">Editar</a>
+
+                    <a href="/prato/del/<%=id%>" class="btn delete">Excluir</a>
+
+                </td>
+
+            </tr>
+
             <% } %>
-        </td>
 
-        <td>
-            <a href="/prato/edt/<%=id%>" class="btn edit">Editar</a>
-            <a href="/prato/del/<%=id%>" class="btn delete">Excluir</a>
-        </td>
-    </tr>
-    <% } %>
+    </table>
 
-</table>
-
-<%-include('../rodape.ejs')%>
+    <%-include('../rodape.ejs')%>
