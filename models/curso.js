@@ -15,6 +15,11 @@ const Curso = conexao.Schema({
     email: {
         type: String,
         required: false
+    },
+
+    imagem: {
+        type: String,
+        required: false
     }
 
 })

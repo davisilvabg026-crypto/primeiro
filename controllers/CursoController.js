@@ -10,10 +10,17 @@ export default class CursoController{
         }
 
         this.add = async(req, res)=>{
+
             await Curso.create({
+
                 nome: req.body.nome,
-                telefone: Number(req.body.telefone),
-                email: req.body.email
+
+                telefone: req.body.telefone,
+
+                email: req.body.email,
+
+                imagem: req.file ? '/uploads/' + req.file.filename : ''
+
             });
 
             res.redirect('/' + caminhoBase + 'lst');
@@ -21,10 +28,14 @@ export default class CursoController{
 
         this.list = async(req, res)=>{
             const resultado = await Curso.find({})
-            res.render(caminhoBase + 'lst', {Cursos: resultado})
+
+            res.render(caminhoBase + 'lst', {
+                Cursos: resultado
+            })
         }
 
         this.find = async(req, res)=>{
+
             const filtro = req.body.filtro;
 
             let resultado;
@@ -46,7 +57,9 @@ export default class CursoController{
 
             }
 
-            res.render(caminhoBase + 'lst', {Cursos: resultado})
+            res.render(caminhoBase + 'lst', {
+                Cursos: resultado
+            })
         }
 
         // Abrir tela de edição
@@ -64,22 +77,37 @@ export default class CursoController{
         // Salvar edição
         this.edt = async(req, res)=>{
 
+            const dados = {
+
+                nome: req.body.nome,
+
+                telefone: req.body.telefone,
+
+                email: req.body.email
+
+            }
+
+            // Só altera a imagem se o usuário escolher uma nova
+            if (req.file) {
+
+                dados.imagem = '/uploads/' + req.file.filename
+
+            }
+
             await Curso.findByIdAndUpdate(
                 req.params.id,
-                {
-                    nome: req.body.nome,
-                    telefone: Number(req.body.telefone),
-                    email: req.body.email
-                }
+                dados
             )
 
             res.redirect('/' + caminhoBase + 'lst');
         }
 
         this.del = async(req, res)=>{
+
             await Curso.findByIdAndDelete(req.params.id)
 
             res.redirect('/' + caminhoBase + 'lst');
+
         }
     }
 }
