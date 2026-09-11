@@ -1,61 +1,69 @@
 <%-include('../cabecalho.ejs')%>
 
-<h1>Editar Cliente</h1>
+    <h1>Editar Cliente</h1>
 
-<div>
+    <div>
 
-    <a href="/curso/lst" class="btn">Listar</a>
+        <a href="/curso/lst" class="btn">Listar</a>
 
-</div>
+    </div>
 
-<div>
+    <div>
 
-    <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
 
-        <label>Nome:</label>
+            <label>Nome:</label>
 
-        <input
-            type="text"
-            name="nome"
-            value="<%=Cliente.nome%>"
-            required>
+            <input type="text" name="nome" value="<%=Cliente.nome%>" required>
 
-        <br>
+            <br>
 
-        <label>Telefone:</label>
+            <label>Telefone:</label>
 
-        <input
-            type="text"
-            name="telefone"
-            value="<%=Cliente.telefone%>"
-            required>
+            <input type="text" name="telefone" value="<%=Cliente.telefone%>" required>
 
-        <br>
+            <br>
 
-        <label>E-mail:</label>
+            <label>E-mail:</label>
 
-        <input
-            type="text"
-            name="email"
-            value="<%=Cliente.email || ''%>">
+            <input type="text" name="email" value="<%=Cliente.email || ''%>">
 
-        <br>
+            <br>
 
-        <label>Nova imagem:</label>
+            <label>Arquivo atual:</label>
 
-        <input
-            type="file"
-            name="imagem"
-            accept="image/*">
+            <% if (Cliente.imagem) { %>
 
-        <br><br>
+                <br>
 
-        <button type="submit" class="btn edit">
-            Salvar
-        </button>
+                <img src="<%=Cliente.imagem%>" width="150" alt="Imagem atual">
 
-    </form>
+                <br>
 
-</div>
+                <p>
+                    <%=Cliente.imagem.split(' /').pop()%>
+                </p>
 
-<%-include('../rodape.ejs')%>
+                <% } else { %>
+
+                    <p>Nenhuma imagem cadastrada.</p>
+
+                    <% } %>
+
+                        <br>
+
+                        <label>Escolher novo arquivo:</label>
+
+                        <input type="file" name="imagem" accept="image/*">
+
+                        <br><br>
+
+                        <button type="submit" class="btn edit">
+                            Salvar
+                        </button>
+
+        </form>
+
+    </div>
+
+    <%-include('../rodape.ejs')%>
