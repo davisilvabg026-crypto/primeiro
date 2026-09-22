@@ -12,7 +12,9 @@
             placeholder="digite nome ou telefone">
 
         <button type="submit" class="btn">
+
             Pesquisar
+
         </button>
 
     </form>
@@ -37,18 +39,18 @@
 
     </tr>
 
-<% for (const {id, nome, telefone, email, imagem} of Cursos) { %>
+<% for (const cliente of Cursos) { %>
 
     <tr>
 
         <td>
 
-            <% if (imagem) { %>
+            <% if (cliente.imagem) { %>
 
                 <img
-                    src="<%=imagem%>"
+                    src="<%=cliente.imagemBase64()%>"
                     width="100"
-                    alt="Imagem de <%=nome%>">
+                    alt="Imagem de <%=cliente.nome%>">
 
             <% } else { %>
 
@@ -58,24 +60,28 @@
 
         </td>
 
-        <td><%=nome%></td>
+        <td><%=cliente.nome%></td>
 
-        <td><%=telefone%></td>
+        <td><%=cliente.telefone%></td>
 
-        <td><%=email || ''%></td>
+        <td><%=cliente.email || ''%></td>
 
         <td>
 
             <a
-                href="/curso/edt/<%=id%>"
+                href="/curso/edt/<%=cliente.id%>"
                 class="btn edit">
+
                 Editar
+
             </a>
 
             <a
-                href="/curso/del/<%=id%>"
+                href="/curso/del/<%=cliente.id%>"
                 class="btn delete">
+
                 Excluir
+
             </a>
 
         </td>

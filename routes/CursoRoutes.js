@@ -3,20 +3,11 @@ import multer from 'multer';
 
 const router = express.Router();
 
-// Configuração do Multer
-const storage = multer.diskStorage({
+const storage = multer.memoryStorage();
 
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/');
-    },
-
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-
+const upload = multer({
+    storage: storage
 });
-
-const upload = multer({ storage: storage });
 
 import CursoController from '../controllers/CursoController.js'
 

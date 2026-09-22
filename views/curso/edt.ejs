@@ -3,51 +3,56 @@
 <h1>Editar Cliente</h1>
 
 <div>
+
     <a href="/curso/lst" class="btn">Listar</a>
+
 </div>
 
 <div>
+
     <form method="post" enctype="multipart/form-data">
 
         <label>Nome:</label>
+
         <input
             type="text"
             name="nome"
             value="<%=Cliente.nome%>"
             required>
+
         <br><br>
 
         <label>Telefone:</label>
+
         <input
             type="text"
             name="telefone"
             value="<%=Cliente.telefone%>"
             required>
+
         <br><br>
 
         <label>E-mail:</label>
+
         <input
             type="text"
             name="email"
             value="<%=Cliente.email || ''%>">
+
         <br><br>
 
-        <label>Arquivo atual:</label>
+        <label>Imagem atual:</label>
 
         <% if (Cliente.imagem) { %>
 
             <br>
 
             <img
-                src="<%=Cliente.imagem%>"
+                src="<%=Cliente.imagemBase64()%>"
                 width="150"
                 alt="Imagem atual">
 
             <br>
-
-            <p>
-                <%=Cliente.imagem.split('/').pop()%>
-            </p>
 
         <% } else { %>
 
@@ -67,10 +72,13 @@
         <br><br>
 
         <button type="submit" class="btn edit">
+
             Salvar
+
         </button>
 
     </form>
+
 </div>
 
 <%-include('../rodape.ejs')%>

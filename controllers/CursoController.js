@@ -19,7 +19,7 @@ export default class CursoController{
 
                 email: req.body.email,
 
-                imagem: req.file ? '/uploads/' + req.file.filename : ''
+                imagem: req.file ? req.file.buffer : null
 
             });
 
@@ -62,7 +62,6 @@ export default class CursoController{
             })
         }
 
-        // Abrir tela de edição
         this.openEdt = async(req, res)=>{
 
             const id = req.params.id
@@ -74,7 +73,6 @@ export default class CursoController{
             })
         }
 
-        // Salvar edição
         this.edt = async(req, res)=>{
 
             const dados = {
@@ -87,10 +85,10 @@ export default class CursoController{
 
             }
 
-            // Só altera a imagem se o usuário escolher uma nova
+            
             if (req.file) {
 
-                dados.imagem = '/uploads/' + req.file.filename
+                dados.imagem = req.file.buffer
 
             }
 
