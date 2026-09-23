@@ -3,6 +3,7 @@
 <h1>Reservas</h1>
 
 <div class="search">
+
     <form action="/reserva/lst" method="post">
 
         <input
@@ -15,11 +16,14 @@
         </button>
 
     </form>
+
 </div>
 
 <br>
 
-<a href="/reserva/add" class="btn add">+ Reserva</a>
+<a href="/reserva/add" class="btn add">
+    + Reserva
+</a>
 
 <table>
 
@@ -38,23 +42,33 @@
     <tr>
 
         <td>
-            <%= reserva.cliente ? reserva.cliente.nome : 'Cliente não encontrado' %>
+            <%= reserva.cliente
+                ? reserva.cliente.nome
+                : 'Cliente não encontrado' %>
         </td>
 
         <td>
-            <%= reserva.cliente ? reserva.cliente.telefone : '-' %>
+            <%= reserva.cliente
+                ? reserva.cliente.telefone
+                : '-' %>
         </td>
 
         <td>
-            <%= reserva.mesa ? 'Mesa' : 'Mesa não encontrada' %>
+            <%= reserva.mesa
+                ? 'Mesa'
+                : 'Mesa não encontrada' %>
         </td>
 
         <td>
-            <%= reserva.mesa ? reserva.mesa.capacidade : '-' %>
+            <%= reserva.mesa
+                ? reserva.mesa.capacidade
+                : '-' %>
         </td>
 
         <td>
-            <%= reserva.mesa ? reserva.mesa.status : '-' %>
+            <%= reserva.mesa
+                ? reserva.mesa.status
+                : '-' %>
         </td>
 
         <td>
@@ -62,11 +76,19 @@
         </td>
 
         <td>
+
+            <a
+                href="/reserva/edt/<%=reserva._id%>"
+                class="btn edit">
+                Editar
+            </a>
+
             <a
                 href="/reserva/del/<%=reserva._id%>"
                 class="btn delete">
                 Excluir
             </a>
+
         </td>
 
     </tr>

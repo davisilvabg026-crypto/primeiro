@@ -1,83 +1,79 @@
 <%-include('../cabecalho.ejs')%>
 
-    <h1>Pratos</h1>
+<h1>Pratos</h1>
 
-    <div class="search">
+<div class="search">
 
-        <form action="/prato/lst" method="post">
+    <form action="/prato/lst" method="post">
 
-            <input type="text" name="filtro" placeholder="digite o nome do prato">
+        <input
+            type="text"
+            name="filtro"
+            placeholder="digite nome ou categoria">
 
-            <button type="submit" class="btn">Pesquisar</button>
+        <button type="submit" class="btn">
+            Pesquisar
+        </button>
 
-        </form>
+    </form>
 
-    </div>
+</div>
 
-    <a href="/prato/add" class="btn add">+ Prato</a>
+<a href="/prato/add" class="btn add">
+    + Prato
+</a>
 
-    <table>
+<table>
+
+    <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Disponível</th>
+        <th>Ações</th>
+    </tr>
+
+    <% for (const {id, nome, categoria, disponivel} of Pratos) { %>
 
         <tr>
-            <th>Imagem</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Disponível</th>
-            <th>Ações</th>
+
+            <td>
+                <%=nome%>
+            </td>
+
+            <td>
+                <%=categoria%>
+            </td>
+
+            <td>
+
+                <% if (disponivel) { %>
+                    Sim
+                <% } else { %>
+                    Não
+                <% } %>
+
+            </td>
+
+            <td>
+
+                <a
+                    href="/prato/edt/<%=id%>"
+                    class="btn edit">
+                    Editar
+                </a>
+
+                <a
+                    href="/prato/del/<%=id%>"
+                    class="btn delete">
+                    Excluir
+                </a>
+
+            </td>
+
         </tr>
 
-        <% for (const {id, nome, categoria, disponivel} of Pratos) { %>
+    <% } %>
 
-            <tr>
+</table>
 
-                <td>
-
-                    <% if (nome==='Charrua' ) { %>
-                        <img src="/charrua.png" width="100">
-                        <% } else if (nome==='Galeto' ) { %>
-                            <img src="/galeto.png" width="100">
-                            <% } else if (nome==='Pizza' ) { %>
-                                <img src="/pizza.png" width="100">
-                                <% } else if (nome==='Pudim' ) { %>
-                                    <img src="/pudim.png" width="100">
-                                    <% } else if (nome==='Strogonoff' ) { %>
-                                        <img src="/strogonoff.png" width="100">
-                                        <% } else if (nome==='Torta bolachinha' ) { %>
-                                            <img src="/tortabolachinha.png" width="100">
-                                            <% } %>
-
-                </td>
-
-                <td>
-                    <%=nome%>
-                </td>
-
-                <td>
-                    <%=categoria%>
-                </td>
-
-                <td>
-
-                    <% if (disponivel) { %>
-                        Sim
-                        <% } else { %>
-                            Não
-                            <% } %>
-
-                </td>
-
-                <td>
-
-                    <a href="/prato/edt/<%=id%>" class="btn edit">Editar</a>
-
-                    <a href="/prato/del/<%=id%>" class="btn delete">Excluir</a>
-
-                </td>
-
-            </tr>
-
-            <% } %>
-
-    </table>
-
-    <%-include('../rodape.ejs')%>
+<%-include('../rodape.ejs')%>

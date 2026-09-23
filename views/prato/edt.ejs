@@ -7,13 +7,21 @@
 </div>
 
 <div>
+
     <form method="post">
 
-        <label>Nome do prato:</label>
-        <input type="text" name="nome"
-        value="<%=Prato.nome%>" required><br>
+        <label>Nome:</label>
+
+        <input
+            type="text"
+            name="nome"
+            value="<%=Prato.nome%>"
+            required>
+
+        <br>
 
         <label>Categoria:</label>
+
         <select name="categoria" required>
 
             <option value="entrada"
@@ -36,9 +44,12 @@
                 Bebida
             </option>
 
-        </select><br>
+        </select>
+
+        <br>
 
         <label>Disponível:</label>
+
         <select name="disponivel" required>
 
             <option value="true"
@@ -51,11 +62,16 @@
                 Não
             </option>
 
-        </select><br>
+        </select>
 
-        <button type="submit" class="btn edit">Salvar</button>
+        <br>
+
+        <button type="submit" class="btn edit">
+            Salvar
+        </button>
 
     </form>
+
 </div>
 
 <%-include('../rodape.ejs')%>

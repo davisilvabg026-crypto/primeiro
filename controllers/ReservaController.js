@@ -5,6 +5,7 @@ import Aluno from '../models/aluno.js'
 export default class ReservaController {
 
     constructor(caminhoBase = 'reserva/') {
+
         this.caminhoBase = caminhoBase
 
         this.openAdd = async(req, res) => {
@@ -20,9 +21,21 @@ export default class ReservaController {
 
         this.add = async(req, res) => {
 
+            let cliente = null
+
+            if(req.body.cliente != null) {
+                cliente = await Curso.findById(req.body.cliente)
+            }
+
+            let mesa = null
+
+            if(req.body.mesa != null) {
+                mesa = await Aluno.findById(req.body.mesa)
+            }
+
             await Reserva.create({
-                cliente: req.body.cliente,
-                mesa: req.body.mesa,
+                cliente: cliente,
+                mesa: mesa,
                 dataHora: req.body.dataHora
             })
 
@@ -64,6 +77,49 @@ export default class ReservaController {
             res.render(caminhoBase + 'lst', {
                 Reservas: resultado
             })
+        }
+
+        this.openEdt = async(req, res) => {
+
+            const id = req.params.id
+
+            const reserva = await Reserva.findById(id)
+
+            const clientes = await Curso.find({})
+
+            const mesas = await Aluno.find({})
+
+            res.render(caminhoBase + "edt", {
+                Reserva: reserva,
+                Clientes: clientes,
+                Mesas: mesas
+            })
+        }
+
+        this.edt = async(req, res) => {
+
+            let cliente = null
+
+            if(req.body.cliente != null) {
+                cliente = await Curso.findById(req.body.cliente)
+            }
+
+            let mesa = null
+
+            if(req.body.mesa != null) {
+                mesa = await Aluno.findById(req.body.mesa)
+            }
+
+            await Reserva.findByIdAndUpdate(
+                req.params.id,
+                {
+                    cliente: cliente,
+                    mesa: mesa,
+                    dataHora: req.body.dataHora
+                }
+            )
+
+            res.redirect('/' + caminhoBase + 'lst')
         }
 
         this.del = async(req, res) => {
