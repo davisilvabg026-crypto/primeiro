@@ -10,7 +10,7 @@ export default class AlunoController {
         }
 
         this.add = async(req, res) => {
-            // cria o Aluno
+        
             await Aluno.create({
                 capacidade: Number(req.body.capacidade),
                 status: req.body.status
@@ -30,12 +30,12 @@ export default class AlunoController {
             let resultado;
 
             if (!isNaN(filtro) && filtro !== '') {
-                // Pesquisa pela capacidade
+            
                 resultado = await Aluno.find({
                     capacidade: Number(filtro)
                 });
             } else {
-                // Pesquisa pelo status
+
                 resultado = await Aluno.find({
                     status: {
                         $regex: filtro,
