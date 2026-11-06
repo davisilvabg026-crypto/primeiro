@@ -6,8 +6,8 @@ import alunoRoutes from './routes/AlunoRoutes.js'; // rotas externas
 import cursoRoutes from './routes/CursoRoutes.js'; // rotas externas
 import pratoRoutes from './routes/PratoRoutes.js';
 import reservaRoutes from './routes/ReservaRoutes.js';
-
-const PORT = 3000
+import siteRoutes from './routes/SiteRoutes.js';
+const PORT = 3001
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +27,7 @@ app.use(alunoRoutes)
 app.use(cursoRoutes)
 app.use(pratoRoutes)
 app.use(reservaRoutes)
+app.use(siteRoutes)
 app.use(routes)
 app.listen(PORT, ()=>{
  console.log(

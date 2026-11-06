@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Vila Nova</title>
+    <link rel="stylesheet" href="/css/style-site.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/admin" class="brand">
+                <div>
+                    <span class="brand-title">Vila Nova</span>
+                    <span class="brand-subtitle">Painel de Gestão</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/site" class="btn-mode">Ver Site do Cliente</a></li>
+                    <a href="http://localhost:3001" class="btn btn-accent">
+                        Voltar ao Projeto Antigo
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">Visão Geral</h2>
+        <p class="section-subtitle">Resumo operacional do Restaurante Vila Nova.</p>
+
+        <!-- Sub-navegação do Admin -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <a href="/admin/clientes">Clientes</a>
+            <a href="/admin/mesas">Mesas</a>
+            <a href="/admin/pratos">Pratos</a>
+            <a href="/admin/reservas">Reservas</a>
+            <a href="/site">Voltar ao site</a>
+        </div>
+
+        <div class="dashboard-metrics">
+            <div class="metric-card">
+                <span>Total de Mesas</span>
+                <h3>12</h3>
+            </div>
+            <div class="metric-card">
+                <span>Clientes Cadastrados</span>
+                <h3>45</h3>
+            </div>
+            <div class="metric-card">
+                <span>Pratos no Cardápio</span>
+                <h3>28</h3>
+            </div>
+            <div class="metric-card">
+                <span>Reservas Hoje</span>
+                <h3>8</h3>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Restaurante Vila Nova - Módulo Administrativo.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Clientes - Admin</title>
+    <link rel="stylesheet" href="/css/style-site.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/admin" class="brand">
+                <div>
+                    <span class="brand-title">Vila Nova</span>
+                    <span class="brand-subtitle">Painel de Gestão</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/site" class="btn-mode">Ver Site do Cliente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">Gerenciamento de Clientes</h2>
+        <p class="section-subtitle">Cadastre e acompanhe os clientes do restaurante.</p>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <a href="/admin" class="btn btn-accent btn-small">Dashboard</a>
+            <a href="/admin/mesas" class="btn btn-accent btn-small">Mesas</a>
+            <a href="/admin/clientes" class="btn btn-primary btn-small">Clientes</a>
+            <a href="/admin/pratos" class="btn btn-accent btn-small">Pratos</a>
+            <a href="/admin/reservas" class="btn btn-accent btn-small">Reservas</a>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80"
+                                style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" alt="Cliente">
+                        </td>
+                        <td>Carlos Eduardo</td>
+                        <td>(51) 98888-7777</td>
+                        <td>carlos@email.com</td>
+                        <td>
+                            <button class="btn

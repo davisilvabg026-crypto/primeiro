@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Mesas - Admin</title>
+    <link rel="stylesheet" href="/css/style-site.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="/admin" class="brand">
+                <div>
+                    <span class="brand-title">Vila Nova</span>
+                    <span class="brand-subtitle">Painel de Gestão</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/site" class="btn-mode">Ver Site do Cliente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">Gerenciamento de Mesas</h2>
+        <p class="section-subtitle">Cadastre, edite ou altere o status das mesas do restaurante.</p>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <a href="/admin" class="btn btn-accent btn-small">Dashboard</a>
+            <a href="/admin/mesas" class="btn btn-primary btn-small">Mesas</a>
+            <a href="/admin/clientes" class="btn btn-accent btn-small">Clientes</a>
+            <a href="/admin/pratos" class="btn btn-accent btn-small">Pratos</a>
+            <a href="/admin/reservas" class="btn btn-accent btn-small">Reservas</a>
+        </div>
+
+        <!-- Form de Cadastro -->
+        <div class="form-container" style="max-width: 100%; margin-bottom: 2rem;">
+            <h3>Cadastrar / Editar Mesa</h3>
+
+            <form action="#" method="POST"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+
+                <div class="form-group" style="margin: 0;">
+                    <label for="nome">Nome da Mesa</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: Mesa VIP 01" required>
+                </div>
+
+                <div class="form-group" style="margin: 0;">
+                    <label for="capacidade">Capacidade</label>
+                    <input type="number" id="capacidade" name="capacidade" placeholder="Ex: 4" min="1" required>
+                </div>
+
+                <div class="form-group" style="margin: 0;">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="livre">Livre</option>
+                        <option value="ocupada">Ocupada</option>
+                        <option value="reservada">Reservada</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; align-items: flex-end;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Mesa</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mesa</th>
+                        <th>Capacidade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Mesa VIP 01</td>
+                        <td>2 Lugares</td>
+                        <td><span class="badge badge-warning">Reservada</span></td>
+                        <td>
+                            <button class="btn btn-primary btn-small">Editar</button>
+                            <button class="btn btn-danger btn-small">Excluir</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mesa Família 02</td>
+                        <td>4 Lugares</td>
+                        <td><span class="badge badge-success">Livre</span></td>
+                        <td>
+                            <button class="btn btn-primary btn-small">Editar</button>
+                            <button class="btn btn-danger btn-small">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Restaurante Vila Nova - Módulo Administrativo.</p>
+    </footer>
+
+</body>
+
+</html>
