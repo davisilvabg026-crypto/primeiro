@@ -7,6 +7,7 @@ import cursoRoutes from './routes/CursoRoutes.js'; // rotas externas
 import pratoRoutes from './routes/PratoRoutes.js';
 import reservaRoutes from './routes/ReservaRoutes.js';
 import siteRoutes from './routes/SiteRoutes.js';
+
 const PORT = 3001
 const app = express();
 
