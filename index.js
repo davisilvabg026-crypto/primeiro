@@ -8,7 +8,7 @@ import pratoRoutes from './routes/PratoRoutes.js';
 import reservaRoutes from './routes/ReservaRoutes.js';
 import siteRoutes from './routes/SiteRoutes.js';
 
-const PORT = 3001
+const PORT = 3000
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
