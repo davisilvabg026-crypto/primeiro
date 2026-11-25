@@ -49,15 +49,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Carlos Eduardo</td>
-                        <td>Mesa VIP 01</td>
-                        <td>03/11/2026 - 20:00</td>
-                        <td>
-                            <button class="btn btn-primary btn-small">Editar</button>
-                            <button class="btn btn-danger btn-small">Cancelar</button>
-                        </td>
-                    </tr>
+                    <% if (reservas && reservas.length> 0) { %>
+                        <% reservas.forEach((reserva, index)=> { %>
+                            <tr>
+                                <td>
+                                    <%= reserva.cliente ? reserva.cliente.nome : 'Cliente não encontrado' %>
+                                </td>
+                                <td>
+                                    <%= reserva.mesa && reserva.mesa.nome ? reserva.mesa.nome : 'Mesa ' + (index + 1) %>
+                                        <% if (reserva.mesa && reserva.mesa.capacidade) { %>
+                                            (<%= reserva.mesa.capacidade %> lugares)
+                                                <% } %>
+                                </td>
+                                <td>
+                                    <%= new Date(reserva.dataHora).toLocaleString('pt-BR', { dateStyle: 'short' ,
+                                        timeStyle: 'short' }) %>
+                                </td>
+                                <td style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <a href="/reserva/edt/<%= reserva._id %>"
+                                        class="btn btn-primary btn-small">Editar</a>
+                                    <a href="/reserva/del/<%= reserva._id %>" class="btn btn-danger btn-small"
+                                        onclick="return confirm('Tem certeza que deseja cancelar esta reserva?')">Cancelar</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 1.5rem;">
+                                            Nenhuma reserva cadastrada no momento.
+                                        </td>
+                                    </tr>
+                                    <% } %>
                 </tbody>
             </table>
         </div>

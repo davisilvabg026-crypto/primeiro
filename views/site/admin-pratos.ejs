@@ -27,10 +27,17 @@
     </header>
 
     <main>
-        <h2 class="section-title">Gerenciamento do Cardápio</h2>
-        <p class="section-subtitle">Gerencie os pratos e sua disponibilidade.</p>
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem;">
+            <div>
+                <h2 class="section-title">Gerenciamento do Cardápio</h2>
+                <p class="section-subtitle" style="margin-bottom: 0;">Gerencie os pratos cadastrados e sua
+                    disponibilidade.</p>
+            </div>
+            <a href="/prato/add" class="btn btn-primary">+ Cadastrar Novo Prato</a>
+        </div>
 
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap;">
             <a href="/admin" class="btn btn-accent btn-small">Dashboard</a>
             <a href="/admin/mesas" class="btn btn-accent btn-small">Mesas</a>
             <a href="/admin/clientes" class="btn btn-accent btn-small">Clientes</a>
@@ -41,3 +48,53 @@
         <div class="table-responsive">
             <table>
                 <thead>
+                    <tr>
+                        <th>Nome do Prato</th>
+                        <th>Categoria</th>
+                        <th>Disponibilidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pratos && pratos.length> 0) { %>
+                        <% pratos.forEach(prato=> { %>
+                            <tr>
+                                <td><strong>
+                                        <%= prato.nome %>
+                                    </strong></td>
+                                <td>
+                                    <%= prato.categoria %>
+                                </td>
+                                <td>
+                                    <% if (prato.disponivel) { %>
+                                        <span class="badge badge-success">Disponível</span>
+                                        <% } else { %>
+                                            <span class="badge badge-danger">Indisponível</span>
+                                            <% } %>
+                                </td>
+                                <td style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <a href="/prato/edt/<%= prato._id %>" class="btn btn-primary btn-small">Editar</a>
+                                    <a href="/prato/del/<%= prato._id %>" class="btn btn-danger btn-small"
+                                        onclick="return confirm('Tem certeza que deseja excluir este prato?')">Excluir</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 2rem; color: #666;">
+                                            Nenhum prato cadastrado no banco de dados ainda.
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Restaurante Vila Nova - Módulo Administrativo.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -46,13 +46,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Carlos Eduardo</td>
-                        <td>Mesa VIP 01</td>
-                        <td>2 Pessoas</td>
-                        <td>03/11/2026 - 20:00</td>
-                        <td><span class="badge badge-warning">Reservada</span></td>
-                    </tr>
+                    <% if (reservas && reservas.length> 0) { %>
+                        <% reservas.forEach((reserva, index)=> { %>
+                            <tr>
+                                <td>
+                                    <%= reserva.cliente ? reserva.cliente.nome : 'Cliente não encontrado' %>
+                                </td>
+                                <td>
+                                    <%= reserva.mesa && reserva.mesa.nome ? reserva.mesa.nome : 'Mesa ' + (index + 1) %>
+                                </td>
+                                <td>
+                                    <%= reserva.mesa ? reserva.mesa.capacidade + ' Pessoas' : '-' %>
+                                </td>
+                                <td>
+                                    <%= new Date(reserva.dataHora).toLocaleString('pt-BR', { dateStyle: 'short' ,
+                                        timeStyle: 'short' }) %>
+                                </td>
+                                <td>
+                                    <% if (reserva.mesa && reserva.mesa.status==='ocupada' ) { %>
+                                        <span class="badge badge-danger">Ocupada</span>
+                                        <% } else { %>
+                                            <span class="badge badge-warning">Reservada</span>
+                                            <% } %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; padding: 1.5rem;">
+                                            Nenhuma reserva cadastrada no momento.
+                                        </td>
+                                    </tr>
+                                    <% } %>
                 </tbody>
             </table>
         </div>

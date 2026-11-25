@@ -35,51 +35,26 @@
         <p class="section-subtitle">Explore nossos pratos artesanais disponíveis hoje.</p>
 
         <div class="grid-cards">
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
-                    alt="Costela Bovina" class="card-img">
-                <div class="card-body">
-                    <span class="badge badge-success">Disponível</span>
-                    <h3 class="card-title">Costela Premium Assada</h3>
-                    <p>Costela assada lentamente com legumes grelhados.</p>
-                    <div class="card-price">R$ 89,90</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=500&q=80"
-                    alt="Massa Carbonara" class="card-img">
-                <div class="card-body">
-                    <span class="badge badge-success">Disponível</span>
-                    <h3 class="card-title">Fettuccine Carbonara</h3>
-                    <p>Massa artesanal, pancetta, gemas de ovos e queijo parmesão.</p>
-                    <div class="card-price">R$ 54,00</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=500&q=80"
-                    alt="Petit Gateau" class="card-img">
-                <div class="card-body">
-                    <span class="badge badge-success">Disponível</span>
-                    <h3 class="card-title">Petit Gâteau de Chocolate</h3>
-                    <p>Bolo quente de chocolate com sorvete de baunilha.</p>
-                    <div class="card-price">R$ 28,00</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=500&q=80"
-                    alt="Vinho Tinto" class="card-img">
-                <div class="card-body">
-                    <span class="badge badge-danger">Esgotado</span>
-                    <h3 class="card-title">Vinho Tinto Reserva</h3>
-                    <p>Garrafa 750ml - Safra Especial.</p>
-                    <div class="card-price">R$ 120,00</div>
-                </div>
-            </div>
-
+            <% if (pratos && pratos.length> 0) { %>
+                <% pratos.forEach(prato=> { %>
+                    <div class="card">
+                        <div class="card-body">
+                            <% if (prato.disponivel) { %>
+                                <span class="badge badge-success">Disponível</span>
+                                <% } else { %>
+                                    <span class="badge badge-danger">Esgotado</span>
+                                    <% } %>
+                                        <h3 class="card-title">
+                                            <%= prato.nome %>
+                                        </h3>
+                                        <p>Categoria: <%= prato.categoria %>
+                                        </p>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <p style="color: #666;">Nenhum prato disponível no cardápio no momento.</p>
+                            <% } %>
         </div>
     </main>
 

@@ -38,73 +38,107 @@
             <a href="/admin/reservas" class="btn btn-accent btn-small">Reservas</a>
         </div>
 
-        <!-- Form de Cadastro -->
-        <div class="form-container" style="max-width: 100%; margin-bottom: 2rem;">
-            <h3>Cadastrar / Editar Mesa</h3>
+        <% const editando=(typeof mesaEdit !=='undefined' && mesaEdit !==null); %>
 
-            <form action="#" method="POST"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <!-- Form de Cadastro / Edição -->
+            <div class="form-container" style="max-width: 100%; margin-bottom: 2rem;">
+                <h3>
+                    <%= editando ? 'Editar Mesa' : 'Cadastrar Nova Mesa' %>
+                </h3>
 
-                <div class="form-group" style="margin: 0;">
-                    <label for="nome">Nome da Mesa</label>
-                    <input type="text" id="nome" name="nome" placeholder="Ex: Mesa VIP 01" required>
-                </div>
+                <form action="/admin/mesas" method="POST"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
 
-                <div class="form-group" style="margin: 0;">
-                    <label for="capacidade">Capacidade</label>
-                    <input type="number" id="capacidade" name="capacidade" placeholder="Ex: 4" min="1" required>
-                </div>
+                    <input type="hidden" name="id" value="<%= editando ? mesaEdit._id : '' %>">
 
-                <div class="form-group" style="margin: 0;">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
-                        <option value="livre">Livre</option>
-                        <option value="ocupada">Ocupada</option>
-                        <option value="reservada">Reservada</option>
-                    </select>
-                </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label for="nome">Nome da Mesa</label>
+                        <input type="text" id="nome" name="nome"
+                            value="<%= editando && mesaEdit.nome ? mesaEdit.nome : '' %>" placeholder="Ex: Mesa VIP 01"
+                            required>
+                    </div>
 
-                <div style="display: flex; align-items: flex-end;">
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Mesa</button>
-                </div>
-            </form>
-        </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label for="capacidade">Capacidade</label>
+                        <input type="number" id="capacidade" name="capacidade"
+                            value="<%= editando ? mesaEdit.capacidade : '' %>" placeholder="Ex: 4" min="1" required>
+                    </div>
 
-        <!-- Tabela -->
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mesa</th>
-                        <th>Capacidade</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
+                    <div class="form-group" style="margin: 0;">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                            <option value="livre" <%=editando && mesaEdit.status==='livre' ? 'selected' : '' %>>Livre
+                            </option>
+                            <option value="ocupada" <%=editando && mesaEdit.status==='ocupada' ? 'selected' : '' %>
+                                >Ocupada</option>
+                            <option value="reservada" <%=editando && mesaEdit.status==='reservada' ? 'selected' : '' %>
+                                >Reservada</option>
+                        </select>
+                    </div>
 
-                <tbody>
-                    <tr>
-                        <td>Mesa VIP 01</td>
-                        <td>2 Lugares</td>
-                        <td><span class="badge badge-warning">Reservada</span></td>
-                        <td>
-                            <button class="btn btn-primary btn-small">Editar</button>
-                            <button class="btn btn-danger btn-small">Excluir</button>
-                        </td>
-                    </tr>
+                    <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <%= editando ? 'Atualizar Mesa' : 'Salvar Mesa' %>
+                        </button>
+                        <% if (editando) { %>
+                            <a href="/admin/mesas" class="btn btn-accent">Cancelar</a>
+                            <% } %>
+                    </div>
+                </form>
+            </div>
 
-                    <tr>
-                        <td>Mesa Família 02</td>
-                        <td>4 Lugares</td>
-                        <td><span class="badge badge-success">Livre</span></td>
-                        <td>
-                            <button class="btn btn-primary btn-small">Editar</button>
-                            <button class="btn btn-danger btn-small">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <!-- Tabela Dinâmica do MongoDB -->
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mesa</th>
+                            <th>Capacidade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% if (mesas && mesas.length> 0) { %>
+                            <% mesas.forEach((mesa, index)=> { %>
+                                <tr>
+                                    <td>
+                                        <%= mesa.nome ? mesa.nome : 'Mesa ' + (index + 1) %>
+                                    </td>
+                                    <td>
+                                        <%= mesa.capacidade %> Lugares
+                                    </td>
+                                    <td>
+                                        <% if (mesa.status==='livre' ) { %>
+                                            <span class="badge badge-success">Livre</span>
+                                            <% } else if (mesa.status==='reservada' ) { %>
+                                                <span class="badge badge-warning">Reservada</span>
+                                                <% } else { %>
+                                                    <span class="badge badge-danger">Ocupada</span>
+                                                    <% } %>
+                                    </td>
+                                    <td style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                        <a href="/admin/mesas/editar/<%= mesa._id %>"
+                                            class="btn btn-primary btn-small">Editar</a>
+                                        <form action="/admin/mesas/excluir/<%= mesa._id %>" method="POST"
+                                            style="margin: 0;"
+                                            onsubmit="return confirm('Tem certeza que deseja excluir esta mesa?')">
+                                            <button type="submit" class="btn btn-danger btn-small">Excluir</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="4" style="text-align: center; padding: 1.5rem;">
+                                                Nenhuma mesa cadastrada no momento.
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
     </main>
 
     <footer>
